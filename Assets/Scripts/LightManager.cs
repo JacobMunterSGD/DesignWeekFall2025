@@ -9,6 +9,20 @@ public class LightManager : MonoBehaviour
 
     public List<LightBulb> lightBulbs;
 
+    [Header("Countdown Variables")]
+
+    public float countdownMedian;
+    public float countdownDeviance;
+
+    [SerializeField] AnimationCurve countMedianDecreaseCurve;
+    [SerializeField] float timeToFastestLights;
+    float startTime;
+    float currentTime;
+
+    [SerializeField] float startMedian;
+    [SerializeField] float endMedian;
+
+
     private void Awake()
     {
         Instance = this;
@@ -17,6 +31,18 @@ public class LightManager : MonoBehaviour
     private void Start()
     {
         GetAllSceneLights();
+        countdownMedian = startMedian;
+        startTime = Time.time;
+    }
+
+    private void Update()
+    {
+        currentTime = Time.time;
+
+        print((startTime + currentTime) / timeToFastestLights);
+
+        float curvedT = countMedianDecreaseCurve.Evaluate((startTime + currentTime) / timeToFastestLights);
+        countdownMedian = Mathf.Lerp(startMedian, endMedian, curvedT);
     }
 
     public void CheckAllLights()

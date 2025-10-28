@@ -7,20 +7,25 @@ public class LightBulb : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    [Header("KeyToBePressed")]
+    [Header("Input")]
     [SerializeField] KeyCode keyCode;
     [SerializeField] bool isClickInput;
 
     void Start()
     {
         isOn = true;
-        timeUntilOff = Random.Range(3f, 10f);
+        timeUntilOff = GetNewCountdown();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         ToggleLight(isOn);
     }
 
     void Update()
+    {
+        if (!GameManager.Instance.gameOver) LightsActive();
+    }
+
+    void LightsActive()
     {
         // timer
         if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
@@ -34,12 +39,17 @@ public class LightBulb : MonoBehaviour
         if (Input.GetKeyDown(keyCode) || Input.GetKeyUp(keyCode))
         {
             isOn = !isOn;
-            if (isOn) timeUntilOff = Random.Range(3f, 10f);
+            if (isOn) timeUntilOff = GetNewCountdown();
             ToggleLight(isOn);
         }
 
         if (isClickInput) ClickVariant();
-        
+    }
+
+    float GetNewCountdown()
+    {
+        return Random.Range(LightManager.Instance.countdownMedian - LightManager.Instance.countdownDeviance,
+                            LightManager.Instance.countdownMedian + LightManager.Instance.countdownDeviance);
     }
 
     public void ToggleLight(bool isTurningOn)
@@ -58,7 +68,7 @@ public class LightBulb : MonoBehaviour
 
     void ClickVariant()
     {
-        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
         {
             isOn = !isOn;
             if (isOn) timeUntilOff = Random.Range(3f, 10f);

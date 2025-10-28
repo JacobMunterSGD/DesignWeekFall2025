@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerEndGameSequence()
     {
+        gameOver = true;
         print("end game sequence triggered");
     }
 }
