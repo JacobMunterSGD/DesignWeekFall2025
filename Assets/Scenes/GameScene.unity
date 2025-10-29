@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightManager
   lightBulbs: []
-  countdownMedian: 8
-  countdownDeviance: 3
+  countdownMedian: 20
+  countdownDeviance: 2
   countMedianDecreaseCurve:
     serializedVersion: 2
     m_Curve:
@@ -196,8 +196,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timeToFastestLights: 20
-  startMedian: 15
-  endMedian: 6
+  startMedian: 10
+  endMedian: 3
 --- !u!1 &80533976
 GameObject:
   m_ObjectHideFlags: 0
