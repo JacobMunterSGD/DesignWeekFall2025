@@ -31,8 +31,9 @@ public class LightBulb : MonoBehaviour
         if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
         else
         {
+            bool wasJustOn = isOn;
             isOn = false;
-            ToggleLight(isOn);
+            if (wasJustOn) ToggleLight(isOn);
         }
 
         // player input

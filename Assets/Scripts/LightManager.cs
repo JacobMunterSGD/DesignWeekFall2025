@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using System.Collections;
 
 public class LightManager : MonoBehaviour
 {
@@ -22,7 +24,6 @@ public class LightManager : MonoBehaviour
     [SerializeField] float startMedian;
     [SerializeField] float endMedian;
 
-
     private void Awake()
     {
         Instance = this;
@@ -33,10 +34,12 @@ public class LightManager : MonoBehaviour
         GetAllSceneLights();
         countdownMedian = startMedian;
         startTime = Time.time;
+        StartCoroutine(LateLightCheck());
     }
 
     private void Update()
     {
+        if (GameManager.Instance.gameOver) return;
         UpdateMedianTime();
     }
 
@@ -48,25 +51,38 @@ public class LightManager : MonoBehaviour
         countdownMedian = Mathf.Lerp(startMedian, endMedian, curvedT);
     }
 
-    public void CheckAllLights()
+    IEnumerator LateLightCheck()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        CheckAllLights();
+    }
+
+    public int CheckAllLights()
     {
         bool allLightsOff = true;
+        int totalLightsOn = 0;
 
         foreach (LightBulb light in lightBulbs)
         {
             if (light.isOn)
             {
+                totalLightsOn++;
                 allLightsOff = false;
-                break;
             }
         }
 
         if (allLightsOff)
         {
             // all lights off - trigger end game thing
-            print("all lights turned off");
-            GameManager.Instance.TriggerEndGameSequence();
+            //print("all lights turned off");
+            //GameManager.Instance.TriggerEndGameSequence();
         }
+
+        //lightsOnSlider.value = totalLightsOn;
+
+        return totalLightsOn;
+
     }
 
     void GetAllSceneLights()
