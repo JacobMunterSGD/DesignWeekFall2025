@@ -7,6 +7,11 @@ public class LightBulb : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    [Header("Sprites")]
+    [SerializeField] Transform spriteHandle;
+    Transform lightOn;
+    Transform lightOff;
+
     [Header("Input")]
     [SerializeField] KeyCode keyCode;
     [SerializeField] bool isClickInput;
@@ -17,7 +22,14 @@ public class LightBulb : MonoBehaviour
         timeUntilOff = GetNewCountdown();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        foreach (Transform t in spriteHandle)
+        {
+            if (t.name == "Light On") lightOn = t;
+            if (t.name == "Light Off") lightOff = t;
+        }
+
         ToggleLight(isOn);
+        
     }
 
     void Update()
@@ -62,17 +74,23 @@ public class LightBulb : MonoBehaviour
     {
         if (isTurningOn)
         {
-            spriteRenderer.color = Color.yellow;
+            //spriteRenderer.color = Color.yellow;
+            //spriteRenderer.sprite = LightManager.Instance.lightOn;
+            lightOn.gameObject.SetActive(true);
+            lightOff.gameObject.SetActive(false);
             GetNewCountdown();
         }
         else
         {
-            spriteRenderer.color = Color.black;
+            //spriteRenderer.color = Color.black;
             LightManager.Instance.CheckAllLights();
+            //spriteRenderer.sprite = LightManager.Instance.lightOff;
+            lightOn.gameObject.SetActive(false);
+            lightOff.gameObject.SetActive(true);
             timeUntilOff = 0;
         }
 
-        print($"toggled button {gameObject.name}");
+        //print($"toggled button {gameObject.name}");
 
     }
 
@@ -84,7 +102,7 @@ public class LightBulb : MonoBehaviour
             if (isOn) timeUntilOff = Random.Range(3f, 10f);
             ToggleLight(isOn);
         }
-        print($"toggled button {gameObject.name}");
+        //print($"toggled button {gameObject.name}");
     }
 
 

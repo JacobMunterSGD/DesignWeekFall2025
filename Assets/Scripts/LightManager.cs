@@ -24,6 +24,10 @@ public class LightManager : MonoBehaviour
     [SerializeField] float startMedian;
     [SerializeField] float endMedian;
 
+    [Header("Sprite References")]
+    public Sprite lightOn;
+    public Sprite lightOff;
+
     private void Awake()
     {
         Instance = this;

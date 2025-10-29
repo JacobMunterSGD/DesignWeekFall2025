@@ -33,9 +33,9 @@ public class DangerMeter : MonoBehaviour
 
     void CheckIfLost()
     {
-        if (dangerSlider.value == maxValue)
+        if (dangerSlider.value == dangerSlider.minValue)
         {
-            //GameManager.Instance.TriggerEndGameSequence();
+            GameManager.Instance.TriggerEndGameSequence();
         }
     }
 
@@ -48,21 +48,21 @@ public class DangerMeter : MonoBehaviour
         switch (_lightsOn)
         {
             case 0:
-                sliderMoveValue = 2;
+                sliderMoveValue = -2;
                 break;
             case 1:
-                sliderMoveValue = 2;
+                sliderMoveValue = -2;
                 break;
             case 2:
-                sliderMoveValue = 1;
+                sliderMoveValue = -1;
                 break;
             case 3:
                 break;
             case 4:
-                sliderMoveValue = -1;
+                sliderMoveValue = 1;
                 break;
             case 5:
-                sliderMoveValue = -2;
+                sliderMoveValue = 2;
                 break;
 
         }
