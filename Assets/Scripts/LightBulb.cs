@@ -28,13 +28,13 @@ public class LightBulb : MonoBehaviour
     void LightsActive()
     {
         // timer
-        if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
-        else
-        {
-            bool wasJustOn = isOn;
-            isOn = false;
-            if (wasJustOn) ToggleLight(isOn);
-        }
+        //if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
+        //else
+        //{
+        //    bool wasJustOn = isOn;
+        //    isOn = false;
+        //    if (wasJustOn) ToggleLight(isOn);
+        //}
 
         // player input
         if (Input.GetKeyDown(keyCode) || Input.GetKeyUp(keyCode))
