@@ -35,7 +35,7 @@ public class DangerMeter : MonoBehaviour
     {
         if (dangerSlider.value == maxValue)
         {
-            //GameManager.Instance.TriggerEndGameSequence();
+            GameManager.Instance.TriggerEndGameSequence();
         }
     }
 
