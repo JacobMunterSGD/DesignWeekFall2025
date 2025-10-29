@@ -51,7 +51,7 @@ public class LightBulb : MonoBehaviour
     {
         float ranRange = Random.Range(LightManager.Instance.countdownMedian - LightManager.Instance.countdownDeviance,
                             LightManager.Instance.countdownMedian + LightManager.Instance.countdownDeviance);
-        print(ranRange);
+        //print(ranRange);
         return ranRange;
     }
 

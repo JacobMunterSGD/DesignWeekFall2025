@@ -21,10 +21,7 @@ public class AudioManager : MonoBehaviour
     [Header("Sound Effects")]
     public AudioClip exampleSFX;
 
-
-
     public Coroutine fadeMusic;
-
 
     void Awake()
     {
@@ -101,7 +98,7 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.J)) AudioManager.Instance.Play(AudioManager.Instance.exampleSFX);
+        //if (Input.GetKeyDown(KeyCode.J)) AudioManager.Instance.Play(AudioManager.Instance.exampleSFX);
 
     }
 
