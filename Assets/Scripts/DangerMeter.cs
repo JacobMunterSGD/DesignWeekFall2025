@@ -8,9 +8,19 @@ public class DangerMeter : MonoBehaviour
 
     [SerializeField] Slider dangerSlider;
 
+    [Header("danger meter parameters")]
+    [SerializeField] float maxValue;
+    [SerializeField] float startValue;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        dangerSlider.maxValue = maxValue;
+        dangerSlider.value = startValue;
     }
 
     private void Update()
@@ -23,7 +33,7 @@ public class DangerMeter : MonoBehaviour
 
     void CheckIfLost()
     {
-        if (dangerSlider.value == 0)
+        if (dangerSlider.value == maxValue)
         {
             GameManager.Instance.TriggerEndGameSequence();
         }
@@ -38,21 +48,21 @@ public class DangerMeter : MonoBehaviour
         switch (_lightsOn)
         {
             case 0:
-                sliderMoveValue = -2;
+                sliderMoveValue = 2;
                 break;
             case 1:
-                sliderMoveValue = -2;
+                sliderMoveValue = 2;
                 break;
             case 2:
-                sliderMoveValue = -1;
+                sliderMoveValue = 1;
                 break;
             case 3:
                 break;
             case 4:
-                sliderMoveValue = 1;
+                sliderMoveValue = -1;
                 break;
             case 5:
-                sliderMoveValue = 2;
+                sliderMoveValue = -2;
                 break;
 
         }

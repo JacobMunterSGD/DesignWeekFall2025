@@ -49,8 +49,10 @@ public class LightBulb : MonoBehaviour
 
     float GetNewCountdown()
     {
-        return Random.Range(LightManager.Instance.countdownMedian - LightManager.Instance.countdownDeviance,
+        float ranRange = Random.Range(LightManager.Instance.countdownMedian - LightManager.Instance.countdownDeviance,
                             LightManager.Instance.countdownMedian + LightManager.Instance.countdownDeviance);
+        print(ranRange);
+        return ranRange;
     }
 
     public void ToggleLight(bool isTurningOn)
