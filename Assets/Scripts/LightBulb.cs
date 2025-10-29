@@ -27,24 +27,27 @@ public class LightBulb : MonoBehaviour
 
     void LightsActive()
     {
-        // timer
-        //if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
-        //else
-        //{
-        //    bool wasJustOn = isOn;
-        //    isOn = false;
-        //    if (wasJustOn) ToggleLight(isOn);
-        //}
-
         // player input
         if (Input.GetKeyDown(keyCode) || Input.GetKeyUp(keyCode))
         {
             isOn = !isOn;
             if (isOn) timeUntilOff = GetNewCountdown();
             ToggleLight(isOn);
+            return;
         }
 
         if (isClickInput) ClickVariant();
+
+        // timer
+        if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
+        else
+        {
+            bool wasJustOn = isOn;
+            isOn = false;
+            if (wasJustOn) ToggleLight(isOn);
+            return;
+        }        
+
     }
 
     float GetNewCountdown()
@@ -60,12 +63,16 @@ public class LightBulb : MonoBehaviour
         if (isTurningOn)
         {
             spriteRenderer.color = Color.yellow;
+            GetNewCountdown();
         }
         else
         {
             spriteRenderer.color = Color.black;
             LightManager.Instance.CheckAllLights();
+            timeUntilOff = 0;
         }
+
+        print($"toggled button {gameObject.name}");
 
     }
 
@@ -77,6 +84,7 @@ public class LightBulb : MonoBehaviour
             if (isOn) timeUntilOff = Random.Range(3f, 10f);
             ToggleLight(isOn);
         }
+        print($"toggled button {gameObject.name}");
     }
 
 
