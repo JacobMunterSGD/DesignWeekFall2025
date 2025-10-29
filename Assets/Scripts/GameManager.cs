@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,14 +7,22 @@ public class GameManager : MonoBehaviour
 
     public bool gameOver;
 
+    [SerializeField] TMP_Text gameOverText;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        gameOverText.enabled = false;
     }
 
     public void TriggerEndGameSequence()
     {
         gameOver = true;
         print("end game sequence triggered");
+        gameOverText.enabled = true;
     }
 }
