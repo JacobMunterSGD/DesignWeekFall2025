@@ -37,9 +37,12 @@ public class LightManager : MonoBehaviour
 
     private void Update()
     {
-        currentTime = Time.time;
+        UpdateMedianTime();
+    }
 
-        print((startTime + currentTime) / timeToFastestLights);
+    void UpdateMedianTime()
+    {
+        currentTime = Time.time;
 
         float curvedT = countMedianDecreaseCurve.Evaluate((startTime + currentTime) / timeToFastestLights);
         countdownMedian = Mathf.Lerp(startMedian, endMedian, curvedT);
