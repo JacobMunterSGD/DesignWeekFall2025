@@ -18,7 +18,7 @@ public class LightBulb : MonoBehaviour
 
     void Start()
     {
-        isOn = true;
+        isOn = false;
         timeUntilOff = GetNewCountdown();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -51,6 +51,8 @@ public class LightBulb : MonoBehaviour
         if (isClickInput) ClickVariant();
 
         // timer
+        if (!GameManager.Instance.tutorialOver) return;
+
         if (timeUntilOff > 0) timeUntilOff -= Time.deltaTime;
         else
         {
@@ -58,7 +60,7 @@ public class LightBulb : MonoBehaviour
             isOn = false;
             if (wasJustOn) ToggleLight(isOn);
             return;
-        }        
+        }
 
     }
 
@@ -83,7 +85,7 @@ public class LightBulb : MonoBehaviour
         else
         {
             //spriteRenderer.color = Color.black;
-            LightManager.Instance.CheckAllLights();
+            LightManager.Instance.LitLightCount();
             //spriteRenderer.sprite = LightManager.Instance.lightOff;
             lightOn.gameObject.SetActive(false);
             lightOff.gameObject.SetActive(true);

@@ -38,13 +38,27 @@ public class LightManager : MonoBehaviour
         GetAllSceneLights();
         countdownMedian = startMedian;
         startTime = Time.time;
-        StartCoroutine(LateLightCheck());
+        //StartCoroutine(LateLightCheck());
     }
+
+    //IEnumerator LateLightCheck()
+    //{
+    //    yield return new WaitForSeconds(.1f);
+
+    //    LitLightCount();
+    //}
 
     private void Update()
     {
-        if (GameManager.Instance.gameOver) return;
+        if (!GameManager.Instance.tutorialOver) TutorialLightCheck();
+
+        else if (GameManager.Instance.gameOver || !GameManager.Instance.tutorialOver) return;
         UpdateMedianTime();
+    }
+
+    void TutorialLightCheck()
+    {
+        if (LitLightCount() == lightBulbs.Count) GameManager.Instance.EndTutorial();
     }
 
     void UpdateMedianTime()
@@ -55,14 +69,7 @@ public class LightManager : MonoBehaviour
         countdownMedian = Mathf.Lerp(startMedian, endMedian, curvedT);
     }
 
-    IEnumerator LateLightCheck()
-    {
-        yield return new WaitForSeconds(.1f);
-
-        CheckAllLights();
-    }
-
-    public int CheckAllLights()
+    public int LitLightCount()
     {
         bool allLightsOff = true;
         int totalLightsOn = 0;

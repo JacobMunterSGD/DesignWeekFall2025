@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool gameOver;
+    public bool tutorialOver;
 
     [SerializeField] TMP_Text gameOverText;
     [SerializeField] TMP_Text startText;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        tutorialOver = false;
     }
 
     private void Start()
@@ -23,16 +25,25 @@ public class GameManager : MonoBehaviour
 
         startText.enabled = true;
 
-        StartCoroutine(StartText());
+    }
 
+    IEnumerator BeginGameAfterTutorial()
+    {
+        print("start real game");
+
+        startText.enabled = false;
+
+        // flicker animation
+
+        yield return new WaitForSeconds(1);
 
     }
 
-    IEnumerator StartText()
+    public void EndTutorial()
     {
-        yield return new WaitForSeconds(5f);
+        tutorialOver = true;
 
-        startText.enabled = false;
+        StartCoroutine(BeginGameAfterTutorial());
     }
 
     public void TriggerEndGameSequence()

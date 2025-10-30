@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class DangerMeter : MonoBehaviour
 {
 
-    public static DangerMeter Instance;
+    [SerializeField] static DangerMeter Instance;
 
     public Slider dangerSlider;
 
@@ -25,7 +25,7 @@ public class DangerMeter : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameOver) return;
+        if (GameManager.Instance.gameOver || !GameManager.Instance.tutorialOver) return;
 
         CheckIfLost();
         UpdateSliderGradualIdea();
@@ -41,7 +41,7 @@ public class DangerMeter : MonoBehaviour
 
     void UpdateSliderGradualIdea()
     {
-        int _lightsOn = LightManager.Instance.CheckAllLights();
+        int _lightsOn = LightManager.Instance.LitLightCount();
 
         float sliderMoveValue = 0;
 
