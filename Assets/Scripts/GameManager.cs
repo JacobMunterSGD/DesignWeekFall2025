@@ -40,4 +40,15 @@ public class GameManager : MonoBehaviour
         print("end game sequence triggered");
         gameOverText.enabled = true;
     }
+
+    private void Update()
+    {
+        if (!gameOver && Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach(LightBulb light in LightManager.Instance.lightBulbs)
+            {
+                light.ToggleLight(true);
+            }
+        }
+    }
 }
