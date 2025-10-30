@@ -43,12 +43,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!gameOver && Input.GetKeyDown(KeyCode.Space))
+        if (gameOver && Input.GetKeyDown(KeyCode.Space))
         {
             foreach(LightBulb light in LightManager.Instance.lightBulbs)
             {
-                light.ToggleLight(true);
-
+                light.isOn = true;
+                light.ToggleLight(light.isOn);
+                DangerMeter.Instance.dangerSlider.value = 10;
+                gameOver = false;
             }
         }
     }

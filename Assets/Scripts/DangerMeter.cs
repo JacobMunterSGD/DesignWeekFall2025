@@ -6,7 +6,7 @@ public class DangerMeter : MonoBehaviour
 
     public static DangerMeter Instance;
 
-    [SerializeField] Slider dangerSlider;
+    public Slider dangerSlider;
 
     [Header("danger meter parameters")]
     [SerializeField] float maxValue;

@@ -195,9 +195,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  timeToFastestLights: 20
+  timeToFastestLights: 45
   startMedian: 10
-  endMedian: 3
+  endMedian: 5
   lightOn: {fileID: 1460732344623693842, guid: 61585c842043fd14daed2cad3374fa28, type: 3}
   lightOff: {fileID: 3890687856228750328, guid: 448990ba29fbad740b65e291659c10d3, type: 3}
 --- !u!1 &73843025
