@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool gameOver;
 
     [SerializeField] TMP_Text gameOverText;
+    [SerializeField] TMP_Text startText;
 
     private void Awake()
     {
@@ -17,6 +19,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameOverText.enabled = false;
+
+        startText.enabled = true;
+
+        StartCoroutine(StartText());
+
+
+    }
+
+    IEnumerator StartText()
+    {
+        yield return new WaitForSeconds(5f);
+
+        startText.enabled = false;
     }
 
     public void TriggerEndGameSequence()
