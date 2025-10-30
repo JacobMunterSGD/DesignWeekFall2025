@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
             foreach(LightBulb light in LightManager.Instance.lightBulbs)
             {
                 light.ToggleLight(true);
+
             }
         }
     }
