@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,10 +48,11 @@ public class GameManager : MonoBehaviour
         {
             foreach(LightBulb light in LightManager.Instance.lightBulbs)
             {
-                light.isOn = true;
-                light.ToggleLight(light.isOn);
-                DangerMeter.Instance.dangerSlider.value = 10;
-                gameOver = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //light.isOn = true;
+                //light.ToggleLight(light.isOn);
+                //DangerMeter.Instance.dangerSlider.value = 10;
+                //gameOver = false;
             }
         }
     }
