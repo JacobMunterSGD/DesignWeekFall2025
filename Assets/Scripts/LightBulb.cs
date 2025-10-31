@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LightBulb : MonoBehaviour
@@ -5,12 +6,15 @@ public class LightBulb : MonoBehaviour
     public bool isOn;
     [SerializeField] float timeUntilOff;
 
+    bool hasFlickered;
+    Coroutine flickerCoroutine;
+
     SpriteRenderer spriteRenderer;
 
     [Header("Sprites")]
     [SerializeField] Transform spriteHandle;
     Transform lightOn;
-    Transform lightOff;
+    //Transform lightOff;
 
     [Header("Input")]
     [SerializeField] KeyCode keyCode;
@@ -25,7 +29,7 @@ public class LightBulb : MonoBehaviour
         foreach (Transform t in spriteHandle)
         {
             if (t.name == "Light On") lightOn = t;
-            if (t.name == "Light Off") lightOff = t;
+            //if (t.name == "Light Off") lightOff = t;
         }
 
         ToggleLight(isOn);
@@ -61,6 +65,11 @@ public class LightBulb : MonoBehaviour
             if (wasJustOn) ToggleLight(isOn);
             return;
         }
+        if (timeUntilOff < LightManager.Instance.countdownFlickerTime && !hasFlickered)
+        {
+            hasFlickered = true;
+            Flicker();
+        }
 
     }
 
@@ -74,12 +83,14 @@ public class LightBulb : MonoBehaviour
 
     public void ToggleLight(bool isTurningOn)
     {
+        if (flickerCoroutine != null) StopCoroutine(flickerCoroutine);
+
         if (isTurningOn)
         {
             //spriteRenderer.color = Color.yellow;
             //spriteRenderer.sprite = LightManager.Instance.lightOn;
-            lightOn.gameObject.SetActive(true);
-            lightOff.gameObject.SetActive(false);
+            hasFlickered = false;
+            ToggleLightSprite(true);
             GetNewCountdown();
         }
         else
@@ -87,8 +98,8 @@ public class LightBulb : MonoBehaviour
             //spriteRenderer.color = Color.black;
             LightManager.Instance.LitLightCount();
             //spriteRenderer.sprite = LightManager.Instance.lightOff;
-            lightOn.gameObject.SetActive(false);
-            lightOff.gameObject.SetActive(true);
+            hasFlickered = true;
+            ToggleLightSprite(false);
             timeUntilOff = 0;
         }
 
@@ -105,6 +116,46 @@ public class LightBulb : MonoBehaviour
             ToggleLight(isOn);
         }
         //print($"toggled button {gameObject.name}");
+    }
+
+    void ToggleLightSprite(bool isBeingTurnedOn)
+    {
+        lightOn.gameObject.SetActive(isBeingTurnedOn);
+        //lightOff.gameObject.SetActive(!isBeingTurnedOn);
+    }
+
+    public void Flicker()
+    {
+        if (flickerCoroutine != null) StopCoroutine(flickerCoroutine);
+
+        //AudioManager.Instance.Play(AudioManager.Instance.lightFlicker, 1);
+
+        flickerCoroutine = StartCoroutine(COFlicker());
+    }
+
+    IEnumerator COFlicker()
+    {
+        ToggleLightSprite(!isOn);
+
+        yield return new WaitForSeconds(Random.Range(.03f, .06f));
+
+        ToggleLightSprite(isOn);
+
+        yield return new WaitForSeconds(Random.Range(.04f, .12f));
+
+        ToggleLightSprite(!isOn);
+
+        yield return new WaitForSeconds(Random.Range(.02f, .09f));
+
+        ToggleLightSprite(isOn);
+
+        yield return new WaitForSeconds(Random.Range(.02f, .09f));
+
+        ToggleLightSprite(!isOn);
+
+        yield return new WaitForSeconds(Random.Range(.02f, .09f));
+
+        ToggleLightSprite(isOn);
     }
 
 

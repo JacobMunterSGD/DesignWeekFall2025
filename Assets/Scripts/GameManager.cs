@@ -25,46 +25,57 @@ public class GameManager : MonoBehaviour
 
         startText.enabled = true;
 
-    }
-
-    IEnumerator BeginGameAfterTutorial()
-    {
-        print("start real game");
-
-        startText.enabled = false;
-
-        // flicker animation
-
-        yield return new WaitForSeconds(1);
+        if (Display.displays.Length > 1)
+            Display.displays[1].Activate();
+        if (Display.displays.Length > 2)
+            Display.displays[2].Activate();
 
     }
 
     public void EndTutorial()
     {
-        tutorialOver = true;
-
         StartCoroutine(BeginGameAfterTutorial());
     }
 
-    public void TriggerEndGameSequence()
+    IEnumerator BeginGameAfterTutorial()
+    {
+        tutorialOver = true;
+        LightManager.Instance.SetMedianStartTime(Time.time);
+
+        startText.enabled = false;
+
+        yield return new WaitForSeconds(.5f);
+
+        LightManager.Instance.FlickerAllLights();
+
+        AudioManager.Instance.Play(AudioManager.Instance.windowCreak, 1);
+
+        yield return new WaitForSeconds(1);
+
+        AudioManager.Instance.StartAmbientNoise();
+
+    }
+
+    public void TriggerEndGameSequence(bool didPlayerWin)
     {
         gameOver = true;
         print("end game sequence triggered");
+
+        AudioManager.Instance.EndAmbientNoise();
+
+        if (didPlayerWin) gameOverText.text = "player won!";
+        else gameOverText.text = "You've been scared! ah!";
+
         gameOverText.enabled = true;
+
+        StartCoroutine(EndGameSequence(didPlayerWin));
     }
 
-    private void Update()
+    IEnumerator EndGameSequence(bool _didPlayerWin)
     {
-        if (gameOver && Input.GetKeyDown(KeyCode.Space))
-        {
-            foreach(LightBulb light in LightManager.Instance.lightBulbs)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                //light.isOn = true;
-                //light.ToggleLight(light.isOn);
-                //DangerMeter.Instance.dangerSlider.value = 10;
-                //gameOver = false;
-            }
-        }
+        yield return new WaitForSeconds(3);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }

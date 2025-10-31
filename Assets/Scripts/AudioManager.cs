@@ -20,8 +20,14 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sound Effects")]
     public AudioClip exampleSFX;
+    public AudioClip lightFlicker;
+    public AudioClip windowCreak;
+
+    [Header("Ambient SFX")]
+    public List<AudioClip> ambientSFXList = new();
 
     public Coroutine fadeMusic;
+    public Coroutine ambientNoises;
 
     void Awake()
     {
@@ -35,9 +41,13 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play a single clip through the sound effects source.
-    public void Play(AudioClip clip)
+    public void Play(AudioClip clip, float volume)
     {
+        if (clip == null) return;
+
         AudioSource tempAudioSource = gameObject.AddComponent<AudioSource>();
+        
+        tempAudioSource.volume = volume;
         tempAudioSource.clip = clip;
         tempAudioSource.Play();
 
@@ -53,12 +63,13 @@ public class AudioManager : MonoBehaviour
     }
 
     // Play a single clip through the music source.
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip, float volume)
     {
         if (clip == GameMusic)
         {
             // make sure the game music loops
         }
+        MusicSource.volume = volume;
         MusicSource.clip = clip;
         MusicSource.Play();
     }
@@ -74,7 +85,7 @@ public class AudioManager : MonoBehaviour
             {
                 if (currentVolume <= 0)
                 {
-                    PlayMusic(SecondTrack);
+                    PlayMusic(SecondTrack, 1);
                     fadeIn = true;
                 }
                 currentVolume -= Time.deltaTime / fadeOutTime;
@@ -93,6 +104,25 @@ public class AudioManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+    }
+
+    public void StartAmbientNoise()
+    {
+        ambientNoises = StartCoroutine(AmbientNoise());
+    }
+
+    public void EndAmbientNoise()
+    {
+        if (ambientNoises != null) StopCoroutine(ambientNoises);
+    }
+
+    IEnumerator AmbientNoise()
+    {
+        yield return new WaitForSeconds(Random.Range(2, 8));
+
+        Play(ambientSFXList[Random.Range(0, ambientSFXList.Count - 1)], .4f);
+
+        ambientNoises = StartCoroutine(AmbientNoise());
     }
 
     private void Update()

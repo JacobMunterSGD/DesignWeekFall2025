@@ -1,16 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DangerMeter : MonoBehaviour
 {
 
-    [SerializeField] static DangerMeter Instance;
+    public static DangerMeter Instance;
 
     public Slider dangerSlider;
 
     [Header("danger meter parameters")]
     [SerializeField] float maxValue;
     [SerializeField] float startValue;
+
+    public float dangerValue;
 
     private void Awake()
     {
@@ -20,7 +23,8 @@ public class DangerMeter : MonoBehaviour
     private void Start()
     {
         dangerSlider.maxValue = maxValue;
-        dangerSlider.value = startValue;
+
+        SetSlider(startValue);
     }
 
     private void Update()
@@ -35,7 +39,7 @@ public class DangerMeter : MonoBehaviour
     {
         if (dangerSlider.value == dangerSlider.minValue)
         {
-            GameManager.Instance.TriggerEndGameSequence();
+            GameManager.Instance.TriggerEndGameSequence(false);
         }
     }
 
@@ -72,12 +76,18 @@ public class DangerMeter : MonoBehaviour
 
     public void UpdateSlider(float changeBy)
     {
-        dangerSlider.value += changeBy;
+        if (dangerValue + changeBy > maxValue)
+        {
+            dangerValue = 20;
+        }
+        dangerValue += changeBy;
+        dangerSlider.value = dangerValue;
     }
 
     public void SetSlider(float newValue)
     {
-        dangerSlider.value = newValue;
+        dangerValue = newValue;
+        dangerSlider.value = dangerValue;
     }
 
 }

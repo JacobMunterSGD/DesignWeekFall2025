@@ -17,12 +17,14 @@ public class LightManager : MonoBehaviour
     public float countdownDeviance;
 
     [SerializeField] AnimationCurve countMedianDecreaseCurve;
-    [SerializeField] float timeToFastestLights;
+
     float startTime;
     float currentTime;
 
     [SerializeField] float startMedian;
     [SerializeField] float endMedian;
+
+    public float countdownFlickerTime;
 
     [Header("Sprite References")]
     public Sprite lightOn;
@@ -37,23 +39,13 @@ public class LightManager : MonoBehaviour
     {
         GetAllSceneLights();
         countdownMedian = startMedian;
-        startTime = Time.time;
-        //StartCoroutine(LateLightCheck());
     }
-
-    //IEnumerator LateLightCheck()
-    //{
-    //    yield return new WaitForSeconds(.1f);
-
-    //    LitLightCount();
-    //}
 
     private void Update()
     {
         if (!GameManager.Instance.tutorialOver) TutorialLightCheck();
 
-        else if (GameManager.Instance.gameOver || !GameManager.Instance.tutorialOver) return;
-        UpdateMedianTime();
+        if (!GameManager.Instance.gameOver && GameManager.Instance.tutorialOver) UpdateMedianTime();        
     }
 
     void TutorialLightCheck()
@@ -63,9 +55,12 @@ public class LightManager : MonoBehaviour
 
     void UpdateMedianTime()
     {
+        if (startTime == 0) return;
+
         currentTime = Time.time;
 
-        float curvedT = countMedianDecreaseCurve.Evaluate((startTime + currentTime) / timeToFastestLights);
+        float curvedT = countMedianDecreaseCurve.Evaluate((currentTime - startTime) / WinClock.Instance.timeToWin);
+
         countdownMedian = Mathf.Lerp(startMedian, endMedian, curvedT);
     }
 
@@ -85,12 +80,7 @@ public class LightManager : MonoBehaviour
 
         if (allLightsOff)
         {
-            // all lights off - trigger end game thing
-            //print("all lights turned off");
-            //GameManager.Instance.TriggerEndGameSequence();
         }
-
-        //lightsOnSlider.value = totalLightsOn;
 
         return totalLightsOn;
 
@@ -105,6 +95,19 @@ public class LightManager : MonoBehaviour
                 lightBulbs.Add(_light);
             }
         }
+    }
+
+    public void FlickerAllLights()
+    {
+        foreach (LightBulb lightBulb in lightBulbs)
+        {
+            lightBulb.Flicker();
+        }
+    }
+
+    public void SetMedianStartTime(float value)
+    {
+        startTime = value;
     }
 
 
