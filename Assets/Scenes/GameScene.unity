@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightManager
   lightBulbs: []
-  countdownMedian: 10
-  countdownDeviance: 3
+  countdownMedian: 6
+  countdownDeviance: 2
   countMedianDecreaseCurve:
     serializedVersion: 2
     m_Curve:
@@ -204,15 +204,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.5984085
       value: 0.977699
-      inSlope: -1.8198578
-      outSlope: -1.8198578
+      inSlope: -0.82354474
+      outSlope: -0.82354474
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.6791774
-      value: 0.42106128
+      time: 0.6704799
+      value: 0.6246135
       inSlope: -3.5829446
       outSlope: -3.5829446
       tangentMode: 0
@@ -249,8 +249,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  startMedian: 8
-  endMedian: 3.5
+  startMedian: 6.5
+  endMedian: 3.2
   countdownFlickerTime: 1.2
   lightOn: {fileID: 1460732344623693842, guid: 61585c842043fd14daed2cad3374fa28, type: 3}
   lightOff: {fileID: 3890687856228750328, guid: 448990ba29fbad740b65e291659c10d3, type: 3}
@@ -1299,7 +1299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: 287}
+  m_AnchoredPosition: {x: -230, y: 62}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &458831923
@@ -1322,9 +1322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'yippee! you did it!! woohoo!!
-
-'
+  m_text: You Survived
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fccc5d8456099547a2bf326c9191770, type: 2}
   m_sharedMaterial: {fileID: -173533754521744553, guid: 6fccc5d8456099547a2bf326c9191770, type: 2}
@@ -1389,7 +1387,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -170.90173, w: 0}
+  m_margin: {x: 0, y: 0, z: -256.49332, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3218,7 +3216,7 @@ MonoBehaviour:
   gameOverText: {fileID: 458831923}
   startText: {fileID: 324575533}
   basementCanvas: {fileID: 280524277}
-  winText: yippee! you did it!! woohoo!!
+  winText: You Survived
 --- !u!1 &1469004396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,6 +3823,7 @@ MonoBehaviour:
   lightFlicker: {fileID: 8300000, guid: f98851a38d696874b80a6d09a332c905, type: 3}
   windowCreak: {fileID: 8300000, guid: 4c46a129ae51c0047aea09d54a72bc62, type: 3}
   jumpScareSFX: {fileID: 8300000, guid: f520e356b82618a46a799ed138a84566, type: 3}
+  victorySFX: {fileID: 8300000, guid: 60a71392c6cd3084f9afcaba76c00479, type: 3}
   ambientSFXList:
   - {fileID: 8300000, guid: 0b6e5452f4ceef64682e30ba1c3465ef, type: 3}
   - {fileID: 8300000, guid: 601bfdc037c64fd409707eee2f19c623, type: 3}

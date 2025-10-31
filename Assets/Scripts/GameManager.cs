@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
         {
             gameOverText.text = winText;
             gameOverText.enabled = true;
+            AudioManager.Instance.Play(AudioManager.Instance.victorySFX, 1);
         }
         else
         {
@@ -88,7 +89,7 @@ public class GameManager : MonoBehaviour
             basementCanvas.gameObject.SetActive(false);                  
         }
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

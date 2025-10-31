@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip lightFlicker;
     public AudioClip windowCreak;
     public AudioClip jumpScareSFX;
+    public AudioClip victorySFX;
 
     [Header("Ambient SFX")]
     public List<AudioClip> ambientSFXList = new();
