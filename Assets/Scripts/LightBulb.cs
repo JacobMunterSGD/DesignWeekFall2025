@@ -128,7 +128,7 @@ public class LightBulb : MonoBehaviour
     {
         if (flickerCoroutine != null) StopCoroutine(flickerCoroutine);
 
-        //AudioManager.Instance.Play(AudioManager.Instance.lightFlicker, 1);
+        AudioManager.Instance.Play(AudioManager.Instance.lightFlicker, 1);
 
         flickerCoroutine = StartCoroutine(COFlicker());
     }

@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip exampleSFX;
     public AudioClip lightFlicker;
     public AudioClip windowCreak;
+    public AudioClip jumpScareSFX;
 
     [Header("Ambient SFX")]
     public List<AudioClip> ambientSFXList = new();
@@ -118,7 +119,7 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator AmbientNoise()
     {
-        yield return new WaitForSeconds(Random.Range(2, 8));
+        yield return new WaitForSeconds(Random.Range(5, 13));
 
         Play(ambientSFXList[Random.Range(0, ambientSFXList.Count - 1)], .4f);
 

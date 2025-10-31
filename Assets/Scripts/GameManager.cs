@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text gameOverText;
     [SerializeField] TMP_Text startText;
 
+    [SerializeField] Canvas basementCanvas;
+
     [SerializeField] string winText;
 
     private void Awake()
@@ -46,17 +48,18 @@ public class GameManager : MonoBehaviour
 
         startText.enabled = false;
 
-        yield return new WaitForSeconds(.5f);
+
+        yield return new WaitForSeconds(1f);
 
         LightManager.Instance.FlickerAllLights();
 
-        AudioManager.Instance.Play(AudioManager.Instance.windowCreak, 1);
-
         yield return new WaitForSeconds(1);
 
+        AudioManager.Instance.Play(AudioManager.Instance.windowCreak, 1);
         AudioManager.Instance.StartAmbientNoise();
 
         LightManager.Instance.ToggleAllLights(false);
+
 
     }
 
@@ -80,9 +83,12 @@ public class GameManager : MonoBehaviour
         else
         {
             BasementImages.Instance.JumpScare();
+            AudioManager.Instance.Play(AudioManager.Instance.jumpScareSFX, 1);
+
+            basementCanvas.gameObject.SetActive(false);                  
         }
 
-            yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

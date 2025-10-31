@@ -1054,7 +1054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -388, y: 32}
+  m_AnchoredPosition: {x: -407, y: 32}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324575533
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Turn on all the lights!
+  m_text: Turn on all the lights
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fccc5d8456099547a2bf326c9191770, type: 2}
   m_sharedMaterial: {fileID: -173533754521744553, guid: 6fccc5d8456099547a2bf326c9191770, type: 2}
@@ -3217,6 +3217,7 @@ MonoBehaviour:
   tutorialOver: 0
   gameOverText: {fileID: 458831923}
   startText: {fileID: 324575533}
+  basementCanvas: {fileID: 280524277}
   winText: yippee! you did it!! woohoo!!
 --- !u!1 &1469004396
 GameObject:
@@ -3821,11 +3822,13 @@ MonoBehaviour:
   GameMusic: {fileID: 0}
   TitleMusic: {fileID: 0}
   exampleSFX: {fileID: 8300000, guid: 714947b902c5f0a419acbda58ad7d029, type: 3}
-  lightFlicker: {fileID: 0}
-  windowCreak: {fileID: 0}
+  lightFlicker: {fileID: 8300000, guid: f98851a38d696874b80a6d09a332c905, type: 3}
+  windowCreak: {fileID: 8300000, guid: 4c46a129ae51c0047aea09d54a72bc62, type: 3}
+  jumpScareSFX: {fileID: 8300000, guid: f520e356b82618a46a799ed138a84566, type: 3}
   ambientSFXList:
   - {fileID: 8300000, guid: 0b6e5452f4ceef64682e30ba1c3465ef, type: 3}
   - {fileID: 8300000, guid: 601bfdc037c64fd409707eee2f19c623, type: 3}
+  - {fileID: 8300000, guid: cd659eb4322aa704c9d260f9dcba7e7d, type: 3}
 --- !u!1 &1732820341
 GameObject:
   m_ObjectHideFlags: 0
