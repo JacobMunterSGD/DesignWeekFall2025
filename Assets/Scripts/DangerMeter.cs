@@ -24,6 +24,7 @@ public class DangerMeter : MonoBehaviour
     {
         dangerSlider.maxValue = maxValue;
 
+
         SetSlider(startValue);
     }
 
@@ -78,10 +79,12 @@ public class DangerMeter : MonoBehaviour
     {
         if (dangerValue + changeBy > maxValue)
         {
-            dangerValue = 20;
+            dangerValue = maxValue;
         }
+
         dangerValue += changeBy;
         dangerSlider.value = dangerValue;
+
     }
 
     public void SetSlider(float newValue)

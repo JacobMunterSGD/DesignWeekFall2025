@@ -8,6 +8,9 @@ public class WinClock : MonoBehaviour
     public float timeToWin;
     [SerializeField] Slider winSlider;
 
+    [SerializeField] RectTransform clockHandHandle;
+
+
     private void Awake()
     {
         Instance = this;
@@ -17,6 +20,8 @@ public class WinClock : MonoBehaviour
     {
         winSlider.maxValue = timeToWin;
         winSlider.value = 0;
+
+        clockHandHandle.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     private void Update()
@@ -31,6 +36,11 @@ public class WinClock : MonoBehaviour
 
         }
         else winSlider.value += Time.deltaTime;
+
+        print(-(winSlider.value * 2 - 90) + " " + winSlider.value) ;
+
+        clockHandHandle.rotation = Quaternion.Euler(0, 0, -(winSlider.value * 2 - 90));
+
     }
 
 }
