@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
+using System.Security.Cryptography;
 
 public class LightManager : MonoBehaviour
 {
@@ -108,6 +109,15 @@ public class LightManager : MonoBehaviour
     public void SetMedianStartTime(float value)
     {
         startTime = value;
+    }
+
+    public void ToggleAllLights(bool turingOn)
+    {
+        foreach (LightBulb lb in lightBulbs)
+        {
+            lb.isOn = turingOn;
+            lb.ToggleLight(lb.isOn);
+        }
     }
 
 

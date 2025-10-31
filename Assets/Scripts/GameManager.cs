@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text gameOverText;
     [SerializeField] TMP_Text startText;
 
+    [SerializeField] string winText;
+
     private void Awake()
     {
         Instance = this;
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.StartAmbientNoise();
 
+        LightManager.Instance.ToggleAllLights(false);
+
     }
 
     public void TriggerEndGameSequence(bool didPlayerWin)
@@ -63,17 +67,22 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.EndAmbientNoise();
 
-        if (didPlayerWin) gameOverText.text = "player won!";
-        else gameOverText.text = "You've been scared! ah!";
-
-        gameOverText.enabled = true;
-
         StartCoroutine(EndGameSequence(didPlayerWin));
     }
 
     IEnumerator EndGameSequence(bool _didPlayerWin)
     {
-        yield return new WaitForSeconds(3);
+        if (_didPlayerWin)
+        {
+            gameOverText.text = winText;
+            gameOverText.enabled = true;
+        }
+        else
+        {
+            BasementImages.Instance.JumpScare();
+        }
+
+            yield return new WaitForSeconds(3);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

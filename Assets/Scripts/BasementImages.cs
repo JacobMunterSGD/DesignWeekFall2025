@@ -38,11 +38,6 @@ public class BasementImages : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameOver)
-        {
-            ChangeBackground(jumpscare);
-            return;
-        }
 
         if (!GameManager.Instance.tutorialOver) ChangeBackground(tutorialBG);
 
@@ -83,6 +78,11 @@ public class BasementImages : MonoBehaviour
         }
 
         StartCoroutine(BlackFlash(activeBG));
+    }
+
+    public void JumpScare()
+    {
+        ChangeBackground(jumpscare);
     }
 
     IEnumerator BlackFlash(SpriteRenderer activeBG)

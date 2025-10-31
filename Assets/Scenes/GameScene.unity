@@ -186,33 +186,33 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.21134616
       value: 0.6452747
-      inSlope: -0.3047657
-      outSlope: -0.3047657
+      inSlope: 0.7061155
+      outSlope: 0.7061155
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.34908655
-      value: 0.14077348
-      inSlope: -0.36951816
-      outSlope: -0.36951816
+      time: 0.40066126
+      value: 0.33462113
+      inSlope: 0.80554247
+      outSlope: 0.80554247
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.6198973
-      value: 0.9325321
-      inSlope: -0.79408896
-      outSlope: -0.79408896
+      time: 0.5984085
+      value: 0.977699
+      inSlope: -1.8198578
+      outSlope: -1.8198578
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.77372086
-      value: 0.23850513
+      time: 0.6791774
+      value: 0.42106128
       inSlope: -3.5829446
       outSlope: -3.5829446
       tangentMode: 0
@@ -220,8 +220,8 @@ MonoBehaviour:
       inWeight: 0.15505034
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.84415543
-      value: 0.974046
+      time: 0.7295314
+      value: 0.9458134
       inSlope: 1.02263
       outSlope: 1.02263
       tangentMode: 0
@@ -238,10 +238,10 @@ MonoBehaviour:
       inWeight: 0.6279626
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9784546
-      value: 0.73412323
-      inSlope: -10.890669
-      outSlope: -10.890669
+      time: 0.991333
+      value: 0.7378769
+      inSlope: -6.6517634
+      outSlope: -6.6517634
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -249,9 +249,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  startMedian: 10
-  endMedian: 5
-  countdownFlickerTime: 1.5
+  startMedian: 8
+  endMedian: 3.5
+  countdownFlickerTime: 1.2
   lightOn: {fileID: 1460732344623693842, guid: 61585c842043fd14daed2cad3374fa28, type: 3}
   lightOff: {fileID: 3890687856228750328, guid: 448990ba29fbad740b65e291659c10d3, type: 3}
 --- !u!1 &45812956
@@ -1282,7 +1282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &458831922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1299,7 +1299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36, y: 38}
+  m_AnchoredPosition: {x: -90, y: 287}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &458831923
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458831921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1322,10 +1322,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You've been scared! ah!
+  m_text: 'yippee! you did it!! woohoo!!
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6fccc5d8456099547a2bf326c9191770, type: 2}
+  m_sharedMaterial: {fileID: -173533754521744553, guid: 6fccc5d8456099547a2bf326c9191770, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1344,13 +1346,13 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 2427
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 67.5
+  m_fontSizeBase: 67.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3215,6 +3217,7 @@ MonoBehaviour:
   tutorialOver: 0
   gameOverText: {fileID: 458831923}
   startText: {fileID: 324575533}
+  winText: yippee! you did it!! woohoo!!
 --- !u!1 &1469004396
 GameObject:
   m_ObjectHideFlags: 0

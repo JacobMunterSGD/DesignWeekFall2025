@@ -37,7 +37,7 @@ public class WinClock : MonoBehaviour
         }
         else winSlider.value += Time.deltaTime;
 
-        print(-(winSlider.value * 2 - 90) + " " + winSlider.value) ;
+        //print(-(winSlider.value * 2 - 90) + " " + winSlider.value) ;
 
         clockHandHandle.rotation = Quaternion.Euler(0, 0, -(winSlider.value * 2 - 90));
 
